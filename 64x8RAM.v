@@ -1,10 +1,10 @@
 module RAM(In, Address, ChipSelect, Write, clk, Out);
 	input [7:0] In;
-	input [4:0] Address;
+	input [5:0] Address;
 	input ChipSelect, Write, clk;
 	output reg [7:0] Out;
 
-	reg [7:0]MemArray[31:0];
+	reg [7:0]MemArray[63:0];
 
 	always @(posedge clk) begin
 		if (ChipSelect & Write) begin
