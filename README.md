@@ -1,1 +1,4 @@
 # Lab5CA
+
+This project was a learning experience in hopes of building a RAM file. This project contains two main components called the 2:4 decoder and the 64x8 RAM file. The decoder is able to choose the correct row that will output the written/read output at a specific address. The 2:4 bit decoder is manipulated by the two most significant bits of the input named address. This is an eight bit binary number and it will control which chip select will be on. The RAM file will be able to either read or write a specific number to a specific address based upon input.This project will help contribute to the making of our future processor. The address will come out of the ALU and will then be inputted to our current project. Data from the register file will then be inputted into our project to be manipulated. 
+
