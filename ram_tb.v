@@ -1,65 +1,118 @@
 
-module ram_tb(i, o);
+module Lab5Memory_tb(e,r);
+input e;
+output r;
 
-input i;
-output o;
-
-reg [7:0] din;
-reg [5:0] adr;
-reg chp, wrt, clk;
-wire [7:0] out;
+reg [7:0] Addy;
+reg [31:0] In;
+//reg [3:0] CS;
+reg write, clock;
+wire [31:0] Out;
 
 
-Lab5RAM dut0(.In(din), .Address(adr), .ChipSelect(chp), .Write(wrt), .clk(clk), .Out(out));
+
+
+
+
+
+
+toplevel dut0(.Address(Addy), .clk(clock), .Write(write), .In(In), .Dout(Out));
+
+//Lab5Memory (Address,clk, Write, In, Dout,doutsig0, doutsig1,doutsig2, doutsig3);
+
+
+
 
 initial begin
-din = 8'd0;
-adr = 6'd0;
-chp = 0;
-wrt = 0;
-clk = 0;
-end 
-
-
+clock =1'd0;
+Addy  = 8'b00000000;
+In = 32'd0;
+write = 0;
+//CS = 0;
+end
 
 always begin
 
-#5 clk = ~clk;
+#5 clock = ~clock;
 end
 
+
 initial begin
-din = 8'd1;
-adr = 6'd1;
-chp = 1;
-wrt = 1;
+
+Addy = 8'd01000011;
+In = 32'd12;
+write = 1'd1;
+//CS = 0;
+
 #10
 
-din = 8'd2;
-adr = 6'd2;
-chp = 1;
-wrt = 1;
+Addy = 8'd01000011;
+In = 32'd12;
+write = 1'd0;
+//CS = 0;
+
 #10
 
-din = 8'd3;
-adr = 6'd3;
-chp = 1;
-wrt = 1;
+Addy = 8'd01000011;
+In = 32'd15;
+write = 1'd0;
+//CS = 0;
+
 #10
 
-din = 8'd4;
-adr = 6'd4;
-chp = 1;
-wrt = 0;
+Addy = 8'd01000011;
+In = 32'd15;
+write = 1'd1;
+//CS = 0;
+
 #10
 
-din = 8'd4;
-adr = 6'd4;
-chp = 0;
-wrt = 1;
+
+Addy = 8'd10000011;
+In = 32'd20;
+write = 1'd1;
+//CS = 1;
+
+#10
+
+Addy = 8'd11000011;
+In = 32'd20;
+write = 1'd0;
+//CS = 1;
+
+#10
+
+Addy = 8'd11000011;
+In = 32'd20;
+write = 1'd1;
+//CS = 1;
+
+#10
+
+Addy = 8'd01000011;
+In = 32'd14;
+write = 1'd0;
+//CS = 0;
+
+#10
+
+Addy = 8'd01000011;
+In = 32'd14;
+write = 1'd0;
+//CS = 0;
+
+#10
+
+Addy = 8'd11000011;
+In = 32'd20;
+write = 1'd1;
+//CS = 1;
+
 #10
 
 $stop;
+
 end
+
+
 endmodule
-
-
